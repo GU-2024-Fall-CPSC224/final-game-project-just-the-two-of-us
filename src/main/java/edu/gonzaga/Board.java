@@ -56,16 +56,27 @@ public class Board {
             if (grid[column][y] == 0) {
                 yCord--;
             } else {
+                if (grid[column][yCord] != team) {
+                    return false;
+                }
                 break;
             }
         }
 
         //Check diag
-        Math.abs(-5);
         System.out.println("Diag Count at: " + countDiagonal(column, yCord, team, 0));
         System.out.println("Diag Count at: " + countDiagonal(column, yCord, team, 1));
         System.out.println("Count at: " + countVertical(column, yCord, team));
         System.out.println("Count at: " + countHorizontal(column, yCord, team));
+
+        if (4 <= countDiagonal(column, yCord, team, 0))
+            return true;
+        if (4 <= countDiagonal(column, yCord, team, 1))
+            return true;
+        if (4 <= countVertical(column, yCord, team))
+            return true;
+        if (4 <= countHorizontal(column, yCord, team))
+            return true;
 
         return false;
     }
@@ -152,6 +163,13 @@ public class Board {
         }
         return count;
     }
-}
 
+    public Integer[][] getGrid() {
+        return grid;
+    }
+
+    public Integer getEmptySpaces() {
+        return emptySpaces;
+    }
+}
 
