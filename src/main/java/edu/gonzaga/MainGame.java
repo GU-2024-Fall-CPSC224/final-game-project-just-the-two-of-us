@@ -17,7 +17,16 @@ package edu.gonzaga;
 public class MainGame {
     public static void main(String[] args) {
         System.out.println("Hello Team Game");
+        Board board = new Board();
+        board.setBoard();
+        board.printGrid();
 
+        board.placePiece(0, 2);
+        board.placePiece(1, 1);
+        board.placePiece(1, 2);
+        board.printGrid();
+
+        board.checkWin(1, 2);
 
         // Your code here. Good luck!
     }
