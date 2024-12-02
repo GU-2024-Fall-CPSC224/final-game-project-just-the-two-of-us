@@ -2,10 +2,10 @@
  * Final project main driver class
  * 
  * 
- * Project Description:
+ * Project Description: Connect 4
  * 
  * 
- * Contributors:
+ * Contributors: Thomas Domser, Mateo Merrin
  * 
  * 
  * Copyright: 2023
