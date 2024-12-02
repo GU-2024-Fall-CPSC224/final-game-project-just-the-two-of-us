@@ -163,6 +163,14 @@ public class Board {
         }
         return count;
     }
+
+    public Integer[][] getGrid() {
+        return grid;
+    }
+
+    public Integer getEmptySpaces() {
+        return emptySpaces;
+    }
 }
 
 
