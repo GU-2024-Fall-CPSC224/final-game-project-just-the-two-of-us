@@ -62,6 +62,7 @@ public class Board {
 
         //Check diag
         Math.abs(-5);
+        printGrid();
         System.out.println("Diag Count at: " + countDiagonal(column, yCord, team, 0));
         System.out.println("Diag Count at: " + countDiagonal(column, yCord, team, 1));
         System.out.println("Count at: " + countVertical(column, yCord, team));
@@ -151,6 +152,14 @@ public class Board {
             }
         }
         return count;
+    }
+
+    public Integer[][] getGrid() {
+        return grid;
+    }
+    
+    public Integer getEmptySpaces() {
+        return emptySpaces;
     }
 }
 
