@@ -1,25 +1,58 @@
 package edu.gonzaga;
 
+import java.awt.Color;
+
 public class Board {
     Integer[][] grid = new Integer[7][6];
     Integer emptySpaces;
+    private String player1Name;
+    private String player2Name;
+    private Color player1Color;
+    private Color player2Color;
+    private int winCondition = 4;
+
+    public void setBoardSize(int rows, int columns) {
+        grid = new Integer[columns][rows]; // Set grid based on user input
+        setBoard();
+    }
 
     public void setBoard() {
-        emptySpaces = 42;
+        emptySpaces = grid.length * grid[0].length;
         for (Integer x = 0; x < grid.length; x++) {
             for (Integer y = 0; y < grid[0].length; y++) {
                 grid[x][y] = 0;
             }
         }
+    }
 
-        /*for (Integer x = 0; x < grid.length; x++) {
-            if (x != 1) {
-                for (Integer y = 0; y < grid[0].length; y++) {
-                    grid[x][y] = 2;
-                    emptySpaces--;
-                }
-            }
-        }*/
+    public void setPlayerDetails(String player1Name, String player1Color, String player2Name, String player2Color) {
+        this.player1Name = player1Name;
+        this.player2Name = player2Name;
+        this.player1Color = getColorFromString(player1Color);
+        this.player2Color = getColorFromString(player2Color);
+    }
+
+    public String getPlayerDetails(int team) {
+        return team == 1 ? player1Name : player2Name;
+    }
+
+    public Color getPlayerColor(int team) {
+        return team == 1 ? player1Color : player2Color;
+    }
+
+    private Color getColorFromString(String colorName) {
+        switch (colorName) {
+            case "Red":
+                return Color.RED;
+            case "Blue":
+                return Color.BLUE;
+            case "Green":
+                return Color.GREEN;
+            case "Yellow":
+                return Color.YELLOW;
+            default:
+                return Color.BLACK;
+        }
     }
 
     public Boolean placePiece(Integer column, Integer team) {
@@ -50,7 +83,7 @@ public class Board {
 
     public Boolean checkWin(Integer column, Integer team) {
         Integer yCord = grid[column].length - 1;
-
+    
         // Get y cord for most recent placed piece
         for (Integer y = grid[column].length - 1; y >= 0; y--) {
             if (grid[column][y] == 0) {
@@ -63,21 +96,21 @@ public class Board {
             }
         }
 
-        //Check diag
         System.out.println("Diag Count at: " + countDiagonal(column, yCord, team, 0));
         System.out.println("Diag Count at: " + countDiagonal(column, yCord, team, 1));
         System.out.println("Count at: " + countVertical(column, yCord, team));
         System.out.println("Count at: " + countHorizontal(column, yCord, team));
-
-        if (4 <= countDiagonal(column, yCord, team, 0))
+    
+        // Check diagonals, vertical, and horizontal
+        if (winCondition <= countDiagonal(column, yCord, team, 0))
             return true;
-        if (4 <= countDiagonal(column, yCord, team, 1))
+        if (winCondition <= countDiagonal(column, yCord, team, 1))
             return true;
-        if (4 <= countVertical(column, yCord, team))
+        if (winCondition <= countVertical(column, yCord, team))
             return true;
-        if (4 <= countHorizontal(column, yCord, team))
+        if (winCondition <= countHorizontal(column, yCord, team))
             return true;
-
+    
         return false;
     }
 
@@ -164,6 +197,10 @@ public class Board {
         return count;
     }
 
+    public void setWinCondition(int winCondition) {
+        this.winCondition = winCondition;
+    }
+
     public Integer[][] getGrid() {
         return grid;
     }
@@ -172,5 +209,3 @@ public class Board {
         return emptySpaces;
     }
 }
-
-

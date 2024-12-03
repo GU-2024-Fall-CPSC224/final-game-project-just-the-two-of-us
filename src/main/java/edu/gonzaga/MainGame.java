@@ -17,9 +17,6 @@ package edu.gonzaga;
 public class MainGame {
     public static void main(String[] args) {
         Board board = new Board();
-        board.setBoard();
-
-        // Launch the UI and pass the board object
         UI gameUI = new UI(board);
         gameUI.start();
     }
