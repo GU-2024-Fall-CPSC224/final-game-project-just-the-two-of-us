@@ -23,6 +23,7 @@ public class Board {
                 grid[x][y] = 0;
             }
         }
+        
     }
 
     public void setPlayerDetails(String player1Name, String player1Color, String player2Name, String player2Color) {
@@ -115,6 +116,9 @@ public class Board {
     }
 
     public Integer countDiagonal (Integer column, Integer yCord, Integer team, Integer diagonalChoice) {
+        if (grid[column][yCord] != team) {
+            return 0;
+        }
         Integer[] movingValues = new Integer[] {1, -1};
         Integer count = 1;
         Integer x = 0;
@@ -151,6 +155,9 @@ public class Board {
     }
 
     public Integer countVertical(Integer column, Integer yCord, Integer team) {
+        if (grid[column][yCord] != team) {
+            return 0;
+        }
         Integer[] movingValues = new Integer[] {1, -1};
         Integer count = 1;
         Integer y = 0;
@@ -177,6 +184,9 @@ public class Board {
     * @return Integer horizontal count
     */
     public Integer countHorizontal(Integer column, Integer yCord, Integer team) {
+        if (grid[column][yCord] != team) {
+            return 0;
+        }
         Integer[] movingValues = new Integer[] {1, -1};
         Integer count = 1;
         Integer x = 0;

@@ -17,6 +17,7 @@ package edu.gonzaga;
 public class MainGame {
     public static void main(String[] args) {
         Board board = new Board();
+        
         UI gameUI = new UI(board);
         gameUI.start();
     }
